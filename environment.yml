@@ -1,4 +1,4 @@
-name: change-this-to-repo-name
+name: sem-high-throughput-defects
 channels:
   - conda-forge
 dependencies:

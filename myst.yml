@@ -1,7 +1,7 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
-  id: msa-em-change-this-to-repo-name-followed-by-the-number-1
+  id: sem-high-throughput-defects-1
   title: Elemental Microscopy Quickstart
   description: A minimal repository to be used as quickstart for the Elemental Microscopy journal.
   short_title: EM Quickstart
@@ -9,7 +9,7 @@ project:
     - Keyword One
     - Keyword Two
     - Spell Out Acronyms
-  github: https://github.com/msa-em/change-this-to-repo-name
+  github: https://github.com/ChrNinaK/sem-high-throughput-defects
   jupyter: true
   #  jupyter:
   #    binder:

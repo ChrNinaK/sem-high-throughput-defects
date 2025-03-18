@@ -6,9 +6,9 @@ project:
   description: A minimal repository to be used as quickstart for the Elemental Microscopy journal.
   short_title: EM Quickstart
   keywords:
-    - Keyword One
-    - Keyword Two
-    - Spell Out Acronyms
+    - SEM
+    - defect characterization
+    - acquisition optimization
   github: https://github.com/ChrNinaK/sem-high-throughput-defects
   # jupyter: true
   #  jupyter:
@@ -23,7 +23,7 @@ project:
   license: CC-BY-4.0
   banner: banner.png
   thumbnail: thumbnail.webp
-  date: 2024-08-27
+  date: 2025-03-21
   history:
     submitted: 2023-08-27
     published: 2024-08-27
@@ -103,23 +103,26 @@ project:
         - Supervision
         - Visualization
         - Writing - original draft
-  funding:
-    - statement: We thank the Microscopy Society of America for sponsoring this project.
-      recipients:
-        - cophus
-        - garnavides
-    - statement: Work at the Molecular Foundry was supported by the Office of Science, Office of Basic Energy Sciences, of the U.S. Department of Energy under Contract No. DE-AC02-05CH11231.
-      id: DE-AC02-05CH11231
-      sources:
-        - name: Office of Science, Office of Basic Energy Sciences, of the U.S. Department of Energy
-      recipients:
-        - cophus
+  # funding:
+  #   - statement: We thank the Microscopy Society of America for sponsoring this project.
+  #     recipients:
+  #       - cophus
+  #       - garnavides
+  #   - statement: Work at the Molecular Foundry was supported by the Office of Science, Office of Basic Energy Sciences, of the U.S. Department of Energy under Contract No. DE-AC02-05CH11231.
+  #     id: DE-AC02-05CH11231
+  #     sources:
+  #       - name: Office of Science, Office of Basic Energy Sciences, of the U.S. Department of Energy
+  #     recipients:
+  #       - cophus
   abbreviations:
-    4D-STEM: four dimensional scanning transmission electron microscopy
-    FFT: fast Fourier transform
-    HAADF: high angle annular dark field
-    HRTEM: high resolution transmission electron microscopy
-    M&M: Microscopy and Microanalysis
-    STEM: scanning transmission electron microscopy
+    SE: secondary electron
+    SEM: scanning electron microscopy
+    BSE: backscattered electron
+    AM: additive manufacturing
+    SNR: signal-to-noise ratio
+    PSNR: peak signal-to-noise ratio
+    ROI: region of interest
+    ML: machine learning
+    ETD: Everhart-Thornley detector
 site:
   template: book-theme

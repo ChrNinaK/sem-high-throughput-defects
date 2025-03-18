@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart Template for Elemental Microscopy'
+title: 'Optimizing High-Throughput SEM for Large-area Defect Characterization in AM Steel'
 short_title: EM Quickstart
 numbering:
   heading_2: false

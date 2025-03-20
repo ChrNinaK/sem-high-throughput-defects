@@ -4,13 +4,16 @@ channels:
 dependencies:
   # add your dependencies below
   # pinning versions if necessary 
-  - python
+  - python=3.11
   - numpy
   - scipy
   - h5py
+  - opencv
+  - pyarrow
+  - pandas
   # additionally, include these deps
   - ipywidgets
-  - matplotlib
+  - matplotlib=3.6
   - ipympl
   - jupyterlab
   - jupyterlab-myst

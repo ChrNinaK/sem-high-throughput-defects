@@ -99,6 +99,12 @@ To eliminate noise and improve defect contours, morphological operations are app
 ## Parameter Optimization
 As dwell time decreases, noise levels increase, necessitating parameter adjustments to maintain detection accuracy. Two complementary tools assist in this process. The first is an interactive slider tool that enables real-time adjustment of Gaussian fidelity and Canny thresholds. It provides a preview over a small area of the micrograph, allowing the visualization of parameter effects and facilitating precise optimization. The effects of adjusting these parameters on the detection process are visualized in Figure 2. Alternatively, the second tool employs Bayesian optimization, where input points for each class - defects and background - are labeled. Using this input, the algorithm iteratively determines the optimal parameter values, achieving accurate detection results with minimal manual adjustments.
 
+:::{figure} #app:figure2
+:name: Figure 2
+:placeholder: ./figures/Fig2.png
+Interactive tool for tuning algorithm parameters and visualizing their effects in real time
+:::
+
 ## Defect Analysis and Metrics
 
 The algorithm quantifies and filters the detected defects based on the following metrics:
@@ -118,6 +124,11 @@ Defect data, including location, size, roundness, and orientation, is saved for 
 ## Output and Visualization
 Figure 3 presents the results of defect classification and orientation analysis. The binary classification of defects is shown on the left, highlighting identified pores and cracks, while the orientation analysis on the right provides insight into the angle and structure of these defects. Other statistical representations of the data can be selected through the drop-down menu.
 
+:::{figure} #app:figure3
+:name: Figure 3
+:placeholder: ./figures/Fig3.png
+Visualization of analysis results, including binary defect classification (left) By clicking on a defect area detailed metrics, such as classification as pore or crack, angle, and size, are displayed (right).
+:::
 
 The details presented in Figure 3 serve as one example of the algorithm's output, they further include a range of visualization tools implemented to comprehensively evaluate and interpret defect characteristics, as outlined below:
 - Binary maps  
@@ -130,6 +141,21 @@ The details presented in Figure 3 serve as one example of the algorithm's output
   Numbers of different defects categorized by their descriptors – implemented here pores and cracks
 - Scatter plots  
   Defect area vs distance from a given reference point
+
+
+The algorithm quantifies and filters the detected defects based on the following metrics:
+- Location of defect and centroid position
+- Size (area)  
+  All defects are characterized by their specific corresponding area, expressed as numbers of pixels, which can be converted into area in μm².
+- Roundness  
+  Calculated as $(\frac{4\pi A}{P^2})$, with $A$ corresponding to the area (as previously determined), and $P$ being the perimeter calculated by summing the number of boundary pixels of the defect.
+- Orientation  
+  Two main types of defects are of interest in the model system of a metal AM sample: cracks, which may include multi-path structures, and pores, characterized by high roundness.  
+  Similar to Ellendt et al. [@12], roundness is used as a morphological criterion to distinguish between these two categories, with each requiring a different method for orientation determination.  
+  For defects with a roundness greater than 0.3 — classified as pores — an ellipse-fitting approach, implemented using the Scientific Python package [@18], calculates the major axis angle. In contrast, defects with a roundness below 0.3 — classified as cracks — are analyzed using a skeletonizing method [@18] that identifies the longest straight boundary line to determine orientation. Orientation is defined as the angle of the defect’s major axis relative to the horizontal.  
+  Defects with a roundness exceeding 0.7 are excluded from orientation analysis, as their high roundness precludes a specific orientation.
+
+Defect data, including location, size, roundness, and orientation, is saved for further analysis. This is done using Feather files, in which each defect is added as a new entry, including all the information on the metrics above and all the pixel coordinates that constitute the defect.
 
 # Assessment of defect detection across varying acquisition parameters
 Detecting defects reliably depends on the interplay between algorithm optimization and image acquisition parameters. The Bayesian optimization approach for determining the algorithm parameters, initialized with 20 input points, provides a strong starting point for selecting optimal detection parameters tailored to specific datasets. However, manual fine-tuning is often necessary to ensure reliable detection across the analyzed area. Table S1 outlines the detection parameters used to achieve the presented results. 

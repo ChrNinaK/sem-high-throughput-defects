@@ -8,6 +8,11 @@ The results of this comparison are presented in Figure 4. On the left, the bench
 
 The two results were overlapped to evaluate the percent (%) of agreement between the algorithm’s detection and manual labels, and accuracy was expressed as the percentage of the pixel area in the algorithm detection that directly matched the manual labels. The agreement (%) is presented in {ref}`fig_Manual`, with values averaged and standard deviations calculated across three tiles per dwell time.
 
+:::{figure} #app:figure4
+:name: Figure 4
+:placeholder: ./figures/Fig4.png
+Comparison of the same area in the benchmark dataset (left) with the same area acquired at different dwell times (middle, adjustable via the slider), while an overlay between the manually labeled defects and defects detected by the algorithm corresponding to the same dwell time are displayed on the right.
+:::
 :::{figure} 
 :name: fig_Manual
 :placeholder: ./figures/Fig5.png

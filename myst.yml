@@ -6,9 +6,9 @@ project:
   description: A minimal repository to be used as quickstart for the Elemental Microscopy journal.
   short_title: EM Quickstart
   keywords:
-    - SEM
-    - defect characterization
-    - acquisition optimization
+    - high-throughput SEM
+    - defect detection
+    - image acquisition optimization
   github: https://github.com/ChrNinaK/sem-high-throughput-defects
   # jupyter: true
   #  jupyter:
@@ -48,12 +48,13 @@ project:
         institution: Technical University of Denmark
         address: Fysikvej 307, 2800 Kgs. Lyngby, Denmark
       roles:
-        - Conceptualization
-        - Funding acquisition
-        - Project administration
-        - Supervision
-        - Visualization
-        - Writing - original draft
+        -	Conceptualization
+        -	Methodology
+        -	Data Curation
+        -	Formal Analysis
+        -	Writing original draft
+        -	Writing – Review & Editing
+
     - id: Tudor
       name: Andrei Tudor Durnescu
       email: s225166@student.dtu.dk
@@ -64,11 +65,11 @@ project:
         institution: Technical University of Denmark
         address: Fysikvej 307, 2800 Kgs. Lyngby, Denmark
       roles:
-        - Conceptualization
-        - Software
-        - Validation
-        - Visualization
-        - Writing - original draft
+        -	Software
+        -	Formal Analysis
+        -	Writing original draft
+        -	Writing – Review & Editing
+
     - id: Sotero
       name: Sotero Romero
       email: s225145@student.dtu.dk
@@ -79,12 +80,9 @@ project:
           institution: Technical University of Denmark
           address: Fysikvej 307, 2800 Kgs. Lyngby, Denmark
       roles:
-        - Conceptualization
-        - Funding acquisition
-        - Project administration
-        - Supervision
-        - Visualization
-        - Writing - original draft
+        -	Software
+        -	Writing – Review & Editing  
+
     - id: jojin
       name: Joerg Jinschek
       corresponding: true
@@ -97,12 +95,11 @@ project:
           address: Fysikvej 307, 2800 Kgs. Lyngby, Denmark
           # ror: 02jbv0t02
       roles:
-        - Conceptualization
-        - Funding acquisition
-        - Project administration
-        - Supervision
-        - Visualization
-        - Writing - original draft
+        -	Conceptualization
+        -	Funding Acquisition
+        -	Supervision
+        -	Writing – Review & Editing
+
   # funding:
   #   - statement: We thank the Microscopy Society of America for sponsoring this project.
   #     recipients:
@@ -124,5 +121,6 @@ project:
     ROI: region of interest
     ML: machine learning
     ETD: Everhart-Thornley detector
+    AAA: Area Adjusted Agreement
 site:
   template: book-theme

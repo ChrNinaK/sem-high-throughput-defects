@@ -2,6 +2,12 @@
 title: Results and Discussion
 ------
 # Evaluation of Automated Detection Framework - Comparison with Manual Labels 
+
+:::{figure} #app:figure4
+:name: Figure 4
+:placeholder: ./figures/Fig4.png
+Comparison of the same area in the benchmark dataset (left) with the same area acquired at different dwell times (middle, adjustable via the slider), while an overlay between the manually labeled defects and defects detected by the algorithm corresponding to the same dwell time are displayed on the right.
+:::
 :::{figure} 
 :name: fig_Manual
 :placeholder: ./figures/Fig5.png

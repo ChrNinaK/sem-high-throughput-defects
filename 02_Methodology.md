@@ -124,6 +124,11 @@ Defect data, including location, size, roundness, and orientation, is saved for 
 ## Output and Visualization
 Figure 3 presents the results of defect classification and orientation analysis. The binary classification of defects is shown on the left, highlighting identified pores and cracks, while the orientation analysis on the right provides insight into the angle and structure of these defects. Other statistical representations of the data can be selected through the drop-down menu.
 
+:::{figure} #app:figure3
+:name: Figure 3
+:placeholder: ./figures/Fig3.png
+Visualization of analysis results, including binary defect classification (left) By clicking on a defect area detailed metrics, such as classification as pore or crack, angle, and size, are displayed (right).
+:::
 
 The details presented in Figure 3 serve as one example of the algorithm's output, they further include a range of visualization tools implemented to comprehensively evaluate and interpret defect characteristics, as outlined below:
 - Binary maps  
@@ -137,12 +142,6 @@ The details presented in Figure 3 serve as one example of the algorithm's output
 - Scatter plots  
   Defect area vs distance from a given reference point
 
-
-:::{figure} #app:figure3
-:name: Figure 3
-:placeholder: ./figures/Fig3.png
-Visualization of analysis results, including binary defect classification (left) By clicking on a defect area detailed metrics, such as classification as pore or crack, angle, and size, are displayed (right).
-:::
 
 The algorithm quantifies and filters the detected defects based on the following metrics:
 - Location of defect and centroid position
@@ -157,22 +156,6 @@ The algorithm quantifies and filters the detected defects based on the following
   Defects with a roundness exceeding 0.7 are excluded from orientation analysis, as their high roundness precludes a specific orientation.
 
 Defect data, including location, size, roundness, and orientation, is saved for further analysis. This is done using Feather files, in which each defect is added as a new entry, including all the information on the metrics above and all the pixel coordinates that constitute the defect.
-
-## Output and Visualization
-Figure 3 presents the results of defect classification and orientation analysis. The binary classification of defects is shown on the left, highlighting identified pores and cracks, while the orientation analysis on the right provides insight into the angle and structure of these defects. Other statistical representations of the data can be selected through the drop-down menu.
-
-
-The details presented in Figure 3 serve as one example of the algorithm's output, they further include a range of visualization tools implemented to comprehensively evaluate and interpret defect characteristics, as outlined below:
-- Binary maps  
-  Highlighting detected defects for comparison against raw images
-- Bubble plots  
-  Showing defect size distributions with frequency metrics
-- Rose diagrams
-  Illustrating defect orientation dispersion relative to the reference axis
-- Bar charts	  
-  Numbers of different defects categorized by their descriptors – implemented here pores and cracks
-- Scatter plots  
-  Defect area vs distance from a given reference point
 
 # Assessment of defect detection across varying acquisition parameters
 Detecting defects reliably depends on the interplay between algorithm optimization and image acquisition parameters. The Bayesian optimization approach for determining the algorithm parameters, initialized with 20 input points, provides a strong starting point for selecting optimal detection parameters tailored to specific datasets. However, manual fine-tuning is often necessary to ensure reliable detection across the analyzed area. Table S1 outlines the detection parameters used to achieve the presented results. 

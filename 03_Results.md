@@ -6,21 +6,21 @@ title: Results and Discussion
 To assess the accuracy of our automated feature detection algorithm, we compared its results to manually labeled data subsets, with areas randomly selected across multiple dwell times. A constant pixel size of 195 nm per pixel was maintained throughout the analysis. Three annotators labeled 21 areas, each measuring 500x500 pixels, with areas randomly assigned among them. This random sampling captured a wide range of defects, minimizing both the effects of feature shape and potential biases from individual annotators.
 The results of this comparison are presented in Figure 4. On the left, the benchmark dataset is displayed, showing the investigated area of the sample. The middle panel illustrates the same area acquired at different dwell times, adjustable via the slider, enabling a comparison of image quality and defect visibility. On the right, the manually labeled areas (in red) are compared with those detected by the algorithm (in blue), with areas of agreement highlighted in green.
 
-The two results were overlapped to evaluate the percent (%) of agreement between the algorithm’s detection and manual labels, and accuracy was expressed as the percentage of the pixel area in the algorithm detection that directly matched the manual labels. The agreement (%) is presented in {ref}`fig_Manual`, with values averaged and standard deviations calculated across three tiles per dwell time.
-
 :::{figure} #app:figure4
 :name: Figure 4
 :placeholder: ./figures/Fig4.png
 Comparison of the same area in the benchmark dataset (left) with the same area acquired at different dwell times (middle, adjustable via the slider), while an overlay between the manually labeled defects and defects detected by the algorithm corresponding to the same dwell time are displayed on the right.
 :::
-:::{figure} 
+
+The two results were overlapped to evaluate the percent (%) of agreement between the algorithm’s detection and manual labels, and accuracy was expressed as the percentage of the pixel area in the algorithm detection that directly matched the manual labels. The agreement (%) is presented in {ref}`fig_Manual`, with values averaged and standard deviations calculated across three tiles per dwell time.
+
+:::{figure} ./figures/Fig5.png
 :name: fig_Manual
-:placeholder: ./figures/Fig5.png
 Calculated values of percentage overlap between algorithm results and manual labels
 :::
 
-{ref}`fig_Manual` shows that even at the highest dwell time of 10 µs, only an agreement of 82 % was achieved between the manual labeling and the algorithm. This limited agreement underscores the very subjective nature of defining the exact boundaries of defects. The somewhat low agreement could result from edge effects in SE images or from smearing of defect edges during sample preparation, both of which can make it challenging to determine the exact border of a defect. This not only highlights the subjectivity involved in manual labeling but also the need for an automated detection algorithm.
-However, the overall agreement between the manual labeling and the areas detected by the algorithm does not significantly decrease with a decrease in dwell time. For example, at the highest dwell time of 10 µs, the agreement is around 82.5 %; at an intermediate dwell time of 1 µs, it is 82.6 %; and even at the lowest dwell time of 100 ns, it remains at 72.7 %. This slight decline of approximately 10 % across a hundred times reduction in dwell time suggests that changes in dwell time have minimal impact on agreement, indicating the algorithm’s robustness.
+{ref}`fig_Manual` shows that even at the highest dwell time of 10 µs, only an agreement of 90 % was achieved between the manual labeling and the algorithm. This limited agreement underscores the very subjective nature of defining the exact boundaries of defects. The somewhat low agreement could result from edge effects in SE images or from smearing of defect edges during sample preparation, both of which can make it challenging to determine the exact border of a defect. This not only highlights the subjectivity involved in manual labeling but also the need for an automated detection algorithm.
+However, the overall agreement between the manual labeling and the areas detected by the algorithm does not significantly decrease with a decrease in dwell time. For example, at the highest dwell time of 10 µs, the agreement is around 90 %; at an intermediate dwell time of 1 µs, it is 74 %; and even at the lowest dwell time of 100 ns, it remains at 72 %. This slight decline of approximately 16 % across a hundred times reduction in dwell time suggests that changes in dwell time have minimal impact on agreement, indicating the algorithm’s robustness.
 
 # Evaluation of SEM Acquisition Settings on Detection Accuracy
 In the following sections, we will first evaluate the effects of pixel size and dwell time independently to understand their individual impacts on detection accuracy and consistency. In the final section, we will discuss the combined effects of these factors on overall high-throughput performance, considering the trade-offs involved in optimizing both detection accuracy and acquisition speed.
@@ -32,9 +32,8 @@ The presented algorithm analyzes local image contrast on a pixel basis. A minimu
 
 To counteract this and maintain a meaningful comparison of pixel sizes, an additional filtering step—restricted by roundness—was applied exclusively to the 390 nm dataset. The filtering threshold was selected empirically to align the number of detected defects with the general range observed in the other datasets, ensuring statistical consistency in the comparative analysis. {ref}`fig_PixelSize` shows the distribution of detected features and their areas depending on the pixel size during acquisition.
 
-:::{figure} 
+:::{figure} ./figures/Fig9.png
 :name: fig_PixelSize
-:placeholder: ./figures/Fig9.png
 Histograms for defect area distribution at varying pixel sizes, a) overall distribution with 5 µm² bin size, b) 0–50 µm² range with 2.5 µm² bin size, and c) 0–10 µm² range with 0.5 µm² bin size. Gray areas show cut-off regions due to the 5-pixel size constraint imposed by the minimum feature size of the dataset acquired with a pixel size of 390nm.
 :::
 
@@ -44,9 +43,8 @@ Increasing the pixel size from 48 nm to 390 nm influences the distribution of de
 To assess the impact of reduced SNRs on defect detectability due to a reduced dwell time using our framework, the SEM micrograph corresponding to a dwell time of 10 µs and a pixel size of 195.31 nm was used as the benchmark throughout this entire section. 
 The effect of reduced dwell time was assessed by calculating the PSNR using reference data obtained at a dwell time of 10 µs. PSNR measures the similarity between test and reference images, with higher values indicating greater resemblance and therefore, lower noise levels. {ref}`fig_PSNR_Dwelltime` illustrates the relationship between dwell time and PSNR values fitted against a square root function.
 
-:::{figure} 
+:::{figure} ./figures/Fig6.png
 :name: fig_PSNR_Dwelltime
-:placeholder: ./figures/Fig6.png
 Relationship between dwell time and PSNR, with values calculated relative to a 10 µs dwell time benchmark and fitted to a square root function.
 :::
 
@@ -55,9 +53,8 @@ According to Joy [4], noise in SEM scales with the square root of the mean elect
 
 AAA values and Error rates relative to the benchmark were determined for each dwell time, as shown in {ref}`fig_EffectConstraints`. All micrographs were captured with a consistent pixel size of 195.31 nm. The effect of varying the filtering constraint on AAA and Error was analyzed for values of ten and fifty.
 
-:::{figure} 
+:::{figure} ./figures/Fig7.png
 :name: fig_EffectConstraints
-:placeholder: ./figures/Fig7.png
 Overall  AAA and error relative to highest dwell time results.
 :::
 
@@ -68,9 +65,8 @@ Error rates for a filtering value of 50 remain consistently lower than those for
 This trade-off between filtering constraints and defect detectability highlights the importance of considering not just AAA alone but also the balance between agreement and Error. While increasing the filtering constraint helps suppress noise and improve agreement with the benchmark at higher dwell times, its effect is more complex at lower dwell times, where high Error rates can undermine the reliability of AAA as a standalone metric. In such cases, the difference between AAA and Error (i.e. AAA - Error) provides a more meaningful measure of detection performance, as it accounts for the extent to which noise contributes to apparent agreement. 
 The relationship between PSNR and AAA - Error for a filtering constraint of 10 is examined in {ref}`fig_Filtering`a), assessing how increasing noise at different dwell times impacts detection accuracy. As PSNR values rise, a corresponding increase in AAA - Error is observed, indicating a dependency. A Pearson correlation analysis was conducted to quantify this relationship despite the limited number of data points. The analysis yielded a high correlation coefficient of 0.869 (p = 0.025), confirming the statistical significance of the observed trend.
 
-:::{figure} 
-:name: fig_Filtering
-:placeholder: ./figures/Fig8.png
+:::{figure} ./figures/Fig8.png
+:name: fig_Filtering 
 a) PSNR values at varying dwell times vs. AAA - Error, showing a linear correlation (Pearson coefficient = 0.869, p=0.025), b) PSNR trend (blue) and filtering constraint function (gray) as functions of dwell time
 :::
 
@@ -80,9 +76,8 @@ Therefore, a thresholding/filtering approach, inversely dependent on the PSNR tr
 ## Combined effects of dwell time and pixel size
 The interplay between dwell time and pixel size significantly influences defect detection accuracy, as both parameters contribute to the resolution and noise characteristics of acquired images and need to be carefully balanced. Comparisons between the PSNR dependent filtered datasets and the benchmark dataset are presented as heat maps in {ref}`fig_matrixraw`. The left panel displays AAA, reflecting the retention of defect information, while the right panel shows Error rates across the acquisition parameters.
 
-:::{figure} 
+:::{figure} ./figures/Fig10.png
 :name: fig_matrixraw
-:placeholder: ./figures/Fig10.png
 Heatmaps displaying the AAA Value Matrix (left) and Error Value Matrix (right) across varying pixel sizes and dwell times. The matrices highlight the distribution of values against the benchmark dataset with a pixel size of 195nm and dwell time of 10µs. Note: due to the high Error value for the datasets of a pixel size of 391nm for 100ns and 300ns, these are excluded from the applied color scale
 :::
 
@@ -96,18 +91,16 @@ Additionally, dwell time and pixel size are not the only factors influencing acq
 ## Effect of Noise Reduction on Defect Detection Accuracy
 To address the decrease in the value of AAA observed at low dwell times, the HR-SEM denoising approach proposed by [@10] was assessed to denoise SEM large-area micrographs. {ref}`fig_nmbfeatures` illustrates the number of defects in correspondence after adaptive filtering values as presented above were applied, comparing valid defects in the datasets as acquired and after denoising. All micrographs were acquired with a pixel size of 195 nm.
 
-:::{figure} 
+:::{figure} ./figures/Fig11.png
 :name: fig_nmbfeatures
-:placeholder: ./figures/Fig11.png
 Number of defects detected in acquired and denoised SEM datasets across dwell times, adaptive filtered values in dependency of dwell time are applied 
 :::
 
 At most dwell times, denoising results in an increase in the number of detected defects after applying the filtering constraints, increasing the number of overall defects detected closer to the benchmark dataset. For instance, at 5 µs, the defect count increases from 302 in the acquired dataset to 664 after denoising. Even at lower dwell times, for instance, at 300 ns, the number of defects increases from 37 in the acquired dataset to 105 after denoising. This suggests that the process not only removes noise but may also enhance the detectability of features that meet the filtering criteria. Denoising may improve the roundness or clarity of features, making them more likely to pass the filtering process. This indicates that denoising at lower dwell times helps detect features that might otherwise be masked by noise.
 A direct comparison of AAA and Error rates between the as-acquired micrographs {ref}`fig_matrixraw` and their denoised counterparts ({ref}`fig_MatrixDenoised`) is presented. Both figures use the same benchmark dataset, ensuring a consistent basis for evaluation. The color scale remains identical across both figures.	
 
-:::{figure} 
+:::{figure} ./figures/Fig12.png
 :name: fig_MatrixDenoised
-:placeholder: ./figures/Fig12.png
 Heatmaps displaying the AAA Value Matrix (left) and Error Value Matrix (right) for denoised datasets across varying pixel sizes and dwell times. The matrices illustrate improvements in AAA and changes in Error rates compared to the as-acquired benchmark dataset with a pixel size of 195 nm and dwell time of 10 µs
 :::
 
@@ -119,9 +112,8 @@ Lastly, the impact on the overall analysis time must be considered. Larger pixel
 In the previous sections, the analysis focused on how variations in image acquisition settings influence the values of AAA and Error. However, for AM samples — with AM steel as the model system — certain feature descriptors such as roundness and orientation relative to the baseplate and print direction are particularly important for understanding how manufacturing process conditions influence defect formation and part quality. To evaluate whether optimizing for shorter image acquisition times affects these descriptors, three datasets were selected. Each dataset meets the criteria for achieving an AAA above 80 and an Error rate below 15%, while providing improved acquisition times compared to the benchmark dataset.
 {ref}`fig_Roundness` presents bubble plots illustrating the relationship between the area of defects and their roundness, depending on the selected image acquisition conditions. The size of each bubble represents the number of defects detected in that bin, normalized by the total number of defects for each acquisition parameter. A roundness threshold of 0.3 was implemented, as roundness serves as an indicator of defect type, distinguishing more rounded pores from elongated cracks. The same filtering values as those used in {ref}`fig_matrixraw` and {ref}`fig_MatrixDenoised` were applied and are visualized by a gray background.
 
-:::{figure} 
+:::{figure} ./figures/Fig13.png
 :name: fig_Roundness
-:placeholder: ./figures/Fig13.png
 Bubble plots showing defect area (log scale) vs. roundness under different image acquisition conditions. Cracks (blue) and gas pores (green) are differentiated by a roundness threshold of 0.3. Total acquisition time is decreasing from left to right.
 :::
 
@@ -132,9 +124,8 @@ Although denoising increases defect retention, bubble plot analysis ({ref}`fig_R
 Another key aspect in analyzing defects in AM samples is the orientation or elongation of defects relative to the baseplate and print direction, which provides insights into process parameters and solidification conditions. This analysis examines the impact of imaging acquisition parameters on pore orientation. To ensure reliable measurements, specific constraints are applied: only pores with roundness values between 0.3 and 0.6 are included, as highly circular defects tend to have arbitrary orientations. 
 The following rose diagrams ({ref}`fig_Rose`) illustrate the distribution of pore orientations across the selected imaging conditions. In these diagrams, the horizontal axis represents the baseplate reference: 0° corresponds to defects aligned parallel to the build plate, while 90° indicates defects oriented perpendicular to it.
 
-:::{figure} 
+:::{figure} ./figures/Fig14.png
 :name: fig_Rose
-:placeholder: ./figures/Fig14.png
 Angular distribution of defect orientations in dependency of image acquisition conditions, with decreasing acquisition time from left to right.
 :::
 

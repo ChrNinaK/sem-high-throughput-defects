@@ -1,4 +1,4 @@
-name: sem-high-throughput-defects
+name: Defects
 channels:
   - conda-forge
 dependencies:
@@ -19,3 +19,5 @@ dependencies:
   - jupyterlab-myst
   - 'nodejs>=20,<21'
   - mystmd
+
+prefix:  C:\Users\s202856\AppData\Local\miniconda3\envs\Defects  

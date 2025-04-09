@@ -3,8 +3,10 @@ version: 1
 project:
   id: sem-high-throughput-defects-1
   title: Optimizing High-Throughput SEM for Large-area Defect Characterization in AM Steel
-  description: A minimal repository to be used as quickstart for the Elemental Microscopy journal.
-  short_title: EM Quickstart
+  short_title: High-Troughput SEM for Defect Detection
+  description: This article introduces a practical framework for high-throughput SEM imaging and automated defect detection in additively manufactured steel. It guides readers through optimizing imaging parameters and quantifying how acquisition time impacts detection accuracy, enabling informed trade-offs for efficient large-area analysis
+  thumbnail: null
+  banner: null
   keywords:
     - high-throughput SEM
     - defect detection
@@ -21,9 +23,7 @@ project:
         token: '512ac78f14e1141db1fac17e8b4099c1e5bc7d589518b38c'
   open_access: true
   license: CC-BY-4.0
-  banner: banner.png
-  thumbnail: thumbnail.webp
-  date: 2025-03-21
+  date: 2025-04-09
   history:
     submitted: 2023-08-27
     published: 2024-08-27
@@ -38,8 +38,7 @@ project:
   exclude:
     - README.md
   authors:
-    - id: chkon
-      name: Christina Koenig
+    - name: Christina Koenig
       email: chkon@dtu.dk
       orcid: 0000-0003-0087-2266
       affiliations:
@@ -54,63 +53,32 @@ project:
         -	Formal Analysis
         -	Writing original draft
         -	Writing – Review & Editing
-
-    - id: Tudor
-      name: Andrei Tudor Durnescu
+    - name: Andrei Tudor Durnescu
       email: s225166@student.dtu.dk
       # orcid: 0000-0001-8338-3323
-      affiliations:
-        id: nlab
-        department: National Centre for Nano Fabrication and Characterization (DTU Nanolab)
-        institution: Technical University of Denmark
-        address: Fysikvej 307, 2800 Kgs. Lyngby, Denmark
+      affiliations: [nlab]
       roles:
         -	Software
         -	Formal Analysis
         -	Writing original draft
         -	Writing – Review & Editing
-
-    - id: Sotero
-      name: Sotero Romero
+    - name: Sotero Romero
       email: s225145@student.dtu.dk
       # orcid: 0000-0003-2348-8558
-      affiliations:
-        - id: nlab
-          department: National Centre for Nano Fabrication and Characterization (DTU Nanolab)
-          institution: Technical University of Denmark
-          address: Fysikvej 307, 2800 Kgs. Lyngby, Denmark
+      affiliations: [nlab]
       roles:
         -	Software
         -	Writing – Review & Editing  
-
-    - id: jojin
-      name: Joerg Jinschek
+    - name: Joerg Jinschek
       corresponding: true
       email: jojin@dtu.dk
       orcid: 0000-0003-1574-0899
-      affiliations:
-        - id: nlab
-          department: National Centre for Nano Fabrication and Characterization (DTU Nanolab)
-          institution: Technical University of Denmark
-          address: Fysikvej 307, 2800 Kgs. Lyngby, Denmark
-          # ror: 02jbv0t02
+      affiliations: [nlab]
       roles:
         -	Conceptualization
         -	Funding Acquisition
         -	Supervision
         -	Writing – Review & Editing
-
-  # funding:
-  #   - statement: We thank the Microscopy Society of America for sponsoring this project.
-  #     recipients:
-  #       - cophus
-  #       - garnavides
-  #   - statement: Work at the Molecular Foundry was supported by the Office of Science, Office of Basic Energy Sciences, of the U.S. Department of Energy under Contract No. DE-AC02-05CH11231.
-  #     id: DE-AC02-05CH11231
-  #     sources:
-  #       - name: Office of Science, Office of Basic Energy Sciences, of the U.S. Department of Energy
-  #     recipients:
-  #       - cophus
   abbreviations:
     SE: secondary electron
     SEM: scanning electron microscopy
@@ -122,5 +90,6 @@ project:
     ML: machine learning
     ETD: Everhart-Thornley detector
     AAA: Area Adjusted Agreement
+
 site:
   template: book-theme

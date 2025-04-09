@@ -1,7 +1,7 @@
 ---
 title: Methodology
 ------
-# Experimentally 
+## Experimentally 
 
 Samples were manufactured using Fe7336 powder on a S235JR baseplate via Powder Plasma Arc Additive Manufacturing at the Technical University of Munich. A single track of 10 cm in length was manufactured using Argon as shielding gas. The welding torch was operated at 120 A and 20 V, with a travel speed of 0.002 m/s and a standoff distance of 10 mm. A sample was cut from the central area of the weld track, ground and polished to 1 µm diamond size, and finished with OPS polishing.
 SEM imaging was carried out using a ThermoFisherScientific Helios 5 Hydra PFIB system equipped with MAPS software (for acquisition and stitching of subsequentially taken SEM images, i.e. tiles), utilizing an interpolated focus strategy. Since the SE signal is primarily sensitive to surface structure (topology), it was chosen for surface defect analysis, using the Everhart-Thornley detector (ETD). The accelerating voltage was set to 30 kV with a beam current of 6.4 nA, and the working distance was maintained at 4.2 mm. To improve the image stitching quality, tile overlap was set to 10 % in both X and Y directions, with an image resolution of 1536 × 1024 pixels per tile. SE image acquisition settings were varied by adjusting the dwell time (0.1 µs, 0.3 µs, 0.5 µs, 0.75 µs, 1 µs, 5 µs, and 10 µs) and pixel size (48.8 nm, 97.6 nm, 195.3 nm, and 390.6 nm per pixel). Due to MAPS software restrictions, only full tiles could be acquired, meaning that not all datasets represented the exact same area. To standardize the comparison, we used the alignment tool within the MAPS software to crop a consistent area of 1.1 × 1.5 mm from all datasets.
@@ -69,7 +69,7 @@ Although the SEM acquisition software provides estimated acquisition times, thes
 :::
 
 
-# Defect Detection based on local contrast conditions 
+## Defect Detection based on local contrast conditions 
 Tiles were stitched into micrographs using MAPS, with blending between tiles as well as tile-to-tile contrast normalization. We developed our own python-based algorithm for automatic detection of defects in micrographs, ensuring consistent accuracy even with variations in contrast and brightness across large-area scans. 
 {ref}`fig_algorithmWorkflow` highlights the general overview of the workflow. For a more detailed description of the individual steps and interactive tools we refer to the section {ref}`AlgorithmDetails`
 
@@ -82,20 +82,20 @@ All steps in the workflow are designed to be adaptable, allowing modifications t
 Additionally, to further address varying SE imaging conditions, a denoising strategy for SEM images is explored using a deep convolutional neural network (HR-SEM denoising approach), as demonstrated by [@10].
 
 (AlgorithmDetails)=
-# Algorithm details 
+## Algorithm details 
 In this section, we provide a detailed breakdown of the workflow illustrated in {ref}`fig_algorithmWorkflow`, emphasizing our algorithm's flexibility to handle diverse image conditions—such as brightness, contrast and peak signal-to-noise ratio (PSNR) in our micrographs. Additionally, we developed a manual labeling tool that enables comparison of the algorithm's results with subjective assessments, enabling a direct evaluation of the algorithm's accuracy against human identification.
 
-## Pre-Processing - Identification of region of Interest 
+### Pre-Processing - Identification of region of Interest 
 SEM micrographs are loaded in supported formats (.tif for standard images and .raw for large areas) and processed to subtract their background, isolating the region of interest (ROI). For AM steel samples, this includes separating the fusion boundary from the baseplate material. BSE images can be used for this step due to their strong contrast, due to differences in chemical composition and crystal orientation. The ROI, defined by the fusion boundary, is identified using Dijkstra’s shortest path algorithm, adapted from [@17]. This method relies on user-defined points, with a minimum of a start and end point, and calculates the shortest gradient-based path. By adapting to local intensity gradients, the algorithm accurately traces the ROI boundary, ensuring robustness even in areas with varying contrast levels. Alternatively, the ROI can also be determined by the user defining an area on the sample.	
 To mitigate the impact of bright edge artifacts in SE images [@2], selective blurring is applied to high-intensity regions with pixel values exceeding 200 (after normalizing brightness values from 0 to 255), effectively reducing noise amplification in surrounding areas.
 
 
-## Feature Identification
+### Feature Identification
 Local Gaussian thresholding is applied over a pixel distance referred to as Gaussian range, which is optimized for the observed defect dimensions. The Gaussian fidelity parameter is adjusted to control the sensitivity of thresholding, determining local threshold values as a function of brightness distributions within the Gaussian curve.
 Then Canny edge detection is applied to outline defect boundaries, with the process controlled by three key parameters. The Canny Ksize defines the length of the square kernel used for the inherent blurring process, optimized according to defect size. The Canny sigma value regulates the strength of the blurring, affecting edge smoothness and noise reduction. Finally, the Canny thresholds set the brightness limits for boundary identification, defined by a minimum and maximum value to ensure accurate edge detection.
 To eliminate noise and improve defect contours, morphological operations are applied, including one dilation and one erosion step using an elliptical kernel with a radius of five pixels.
 
-## Parameter Optimization
+### Parameter Optimization
 As dwell time decreases, noise levels increase, necessitating parameter adjustments to maintain detection accuracy. Two complementary tools assist in this process. The first is an interactive slider tool that enables real-time adjustment of Gaussian fidelity and Canny thresholds. It provides a preview over a small area of the micrograph, allowing the visualization of parameter effects and facilitating precise optimization. The effects of adjusting these parameters on the detection process are visualized in Figure 2. Alternatively, the second tool employs Bayesian optimization, where input points for each class - defects and background - are labeled. Using this input, the algorithm iteratively determines the optimal parameter values, achieving accurate detection results with minimal manual adjustments.
 
 :::{figure} #app:figure2
@@ -105,7 +105,7 @@ Interactive tool for tuning algorithm parameters and visualizing their effects i
 :::
 
 
-## Defect Analysis and Metrics
+### Defect Analysis and Metrics
 
 The algorithm quantifies and filters the detected defects based on the following metrics:
 - Location of defect and centroid position
@@ -121,7 +121,7 @@ The algorithm quantifies and filters the detected defects based on the following
 
 Defect data, including location, size, roundness, and orientation, is saved for further analysis. This is done using Feather files, in which each defect is added as a new entry, including all the information on the metrics above and all the pixel coordinates that constitute the defect.
 
-## Output and Visualization
+### Output and Visualization
 Figure 3 presents the results of defect classification and orientation analysis. The binary classification of defects is shown on the left, highlighting identified pores and cracks, while the orientation analysis on the right provides insight into the angle and structure of these defects. Other statistical representations of the data can be selected through the drop-down menu.
 
 :::{figure} #app:figure3
@@ -157,7 +157,7 @@ The algorithm quantifies and filters the detected defects based on the following
 
 Defect data, including location, size, roundness, and orientation, is saved for further analysis. This is done using Feather files, in which each defect is added as a new entry, including all the information on the metrics above and all the pixel coordinates that constitute the defect.
 
-# Assessment of defect detection across varying acquisition parameters
+## Assessment of defect detection across varying acquisition parameters
 Detecting defects reliably depends on the interplay between algorithm optimization and image acquisition parameters. The Bayesian optimization approach for determining the algorithm parameters, initialized with 20 input points, provides a strong starting point for selecting optimal detection parameters tailored to specific datasets. However, manual fine-tuning is often necessary to ensure reliable detection across the analyzed area. Table S1 outlines the detection parameters used to achieve the presented results. 
 When comparing detection accuracy across multiple image acquisitions, achieving an exact pixel-scale match would be ideal. However, this is not feasible due to practical limitations of the intrinsic scanning mode in SEM imaging. For each combination of dwell time and pixel size, the entire area is scanned in a stop-and-go motion, where only after one set is completed does the stage return to the starting point to acquire tiles with new settings. Inaccuracies in the SEM stage movements during acquisition can lead to misalignments, making a direct pixel-based comparison unfeasible. 
 To address this, we developed two key metrics: Area Adjusted Agreement (AAA) and Error. These metrics are designed to quantify the retention of defect information and accuracy as dwell time decreases. Using only two metrics, we capture the evolution of defect detection with reduced dwell time. 	

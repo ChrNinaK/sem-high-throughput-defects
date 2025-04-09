@@ -1,6 +1,6 @@
 ---
 title: 'Optimizing High-Throughput SEM for Large-area Defect Characterization in AM Steel'
-short_title: 
+short_title: High-Trroughput SEM for Defect Detection
 numbering:
   heading_2: false
 ---
@@ -17,7 +17,7 @@ By effectively balancing SEM image acquisition speed and accuracy, this scalable
 +++{"part":"epigraph"}
 :::{warning} Pre-print
 This article has not yet been peer-reviewed.  
-_Updated 2024 August 27_
+_Updated 2025 April 09_
 :::
 
 +++
@@ -28,7 +28,7 @@ The authors express their gratitude to their colleagues at the National Centre f
 +++
 
 +++ {"part": "competing interests"} 
-## Competing Interests
+## Declaration of Competing Interests
 
-Add your competing interests, if any, here.
+The authors declare that they have no known competing interests.
 +++

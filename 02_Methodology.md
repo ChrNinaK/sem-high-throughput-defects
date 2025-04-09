@@ -98,7 +98,7 @@ To eliminate noise and improve defect contours, morphological operations are app
 ## Parameter Optimization
 As dwell time decreases, noise levels increase, necessitating parameter adjustments to maintain detection accuracy. Two complementary tools assist in this process. The first is an interactive slider tool that enables real-time adjustment of Gaussian fidelity and Canny thresholds. It provides a preview over a small area of the micrograph, allowing the visualization of parameter effects and facilitating precise optimization. The effects of adjusting these parameters on the detection process are visualized in Figure 2. Alternatively, the second tool employs Bayesian optimization, where input points for each class - defects and background - are labeled. Using this input, the algorithm iteratively determines the optimal parameter values, achieving accurate detection results with minimal manual adjustments.
 
-:::{figure} 
+:::{figure} #app:figure2
 :name: Figure 2
 :placeholder: ./figures/Fig2.png
 Interactive tool for tuning algorithm parameters and visualizing their effects in real time

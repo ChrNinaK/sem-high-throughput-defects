@@ -5,8 +5,8 @@ project:
   title: Optimizing High-Throughput SEM for Large-area Defect Characterization in AM Steel
   short_title: High-Troughput SEM for Defect Detection
   description: This article introduces a practical framework for high-throughput SEM imaging and automated defect detection in additively manufactured steel. It guides readers through optimizing imaging parameters and quantifying how acquisition time impacts detection accuracy, enabling informed trade-offs for efficient large-area analysis
-  thumbnail: null
-  banner: null
+  thumbnail: thumbnail.png
+  banner: banner.png
   keywords:
     - high-throughput SEM
     - defect detection
